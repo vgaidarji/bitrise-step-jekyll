@@ -64,12 +64,11 @@ toolkit:
 
 
 inputs:
-  - project_location: $BITRISE_SOURCE_DIR
+  - work_dir: $BITRISE_SOURCE_DIR
     opts:
-      title: Project Location
+      title: Working directory
       summary: "The root directory of your Jekyll project"
-      description: "The root directory of your Jekyll project"
-      is_required: true
+      description: "The root directory of your Jekyll project."
 
 outputs:
   - EXAMPLE_STEP_OUTPUT:
