@@ -64,17 +64,12 @@ toolkit:
 
 
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - project_location: $BITRISE_SOURCE_DIR
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
-      description: |
-        Description of this input.
-
-        Can be Markdown formatted text.
-      is_expand: true
+      title: Project Location
+      summary: "The root directory of your Jekyll project"
+      description: "The root directory of your Jekyll project"
       is_required: true
-      value_options: []
 
 outputs:
   - EXAMPLE_STEP_OUTPUT:
