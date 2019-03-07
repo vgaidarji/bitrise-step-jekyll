@@ -47,12 +47,7 @@ func exportJekyllSiteFolderPath(config Config) {
 	}
 }
 
-func main() {
-	config, _ := initializeConfig()
-
-	fmt.Println()
-	log.Infof("Building Jekyll project")
-
+func bundleInstallDependencies(config Config) {
 	cmdBundleInstall := exec.Command("bundle", "install")
 	cmdBundleInstall.Dir = config.WorkDir
 	cmdBundleInstallResult, err := cmdBundleInstall.Output()
@@ -61,7 +56,9 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf(string(cmdBundleInstallResult))
+}
 
+func buildJekyllProject(config Config) {
 	cmdJekyllBuild := exec.Command("bundle", "exec", "jekyll", "build")
 	cmdJekyllBuild.Dir = config.WorkDir
 	cmdJekyllBuildResult, err := cmdJekyllBuild.Output()
@@ -70,7 +67,16 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf(string(cmdJekyllBuildResult))
+}
 
+func main() {
+	config, _ := initializeConfig()
+
+	fmt.Println()
+	log.Infof("Building Jekyll project")
+
+	bundleInstallDependencies(config)
+	buildJekyllProject(config)
 	exportJekyllSiteFolderPath(config)
 
 	log.Donef("  Done")
