@@ -57,15 +57,12 @@ inputs:
   - work_dir: $BITRISE_SOURCE_DIR
     opts:
       title: Working directory
-      summary: "The root directory of your Jekyll project"
+      summary: "The root directory of your Jekyll project."
       description: "The root directory of your Jekyll project."
 
 outputs:
-  - EXAMPLE_STEP_OUTPUT:
+  - JEKYLL_GENERATED_SITE_FOLDER:
     opts:
-      title: "Example Step Output"
-      summary: Summary. No more than 2-3 sentences.
-      description: |
-        Description of this output.
-
-        Can be Markdown formatted text.
+      title: "Jekyll generated site folder"
+      summary: "Provides path to Jekyll _site generated folder."
+      description: "Provides path to Jekyll _site generated folder."

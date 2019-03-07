@@ -38,6 +38,15 @@ func initializeConfig() (Config, error) {
 	return config, nil
 }
 
+func exportJekyllSiteFolderPath(config Config) {
+	siteDir := config.WorkDir + "/_site"
+	cmdLog, err := exec.Command("bitrise", "envman", "add", "--key", "JEKYLL_GENERATED_SITE_FOLDER", "--value", siteDir).CombinedOutput()
+	if err != nil {
+		fmt.Printf("Failed to expose output with envman, error: %#v | output: %s", err, cmdLog)
+		os.Exit(1)
+	}
+}
+
 func main() {
 	config, _ := initializeConfig()
 
@@ -62,12 +71,7 @@ func main() {
 	}
 	fmt.Printf(string(cmdJekyllBuildResult))
 
-	siteDir := config.WorkDir + "/_site"
-	cmdLog, err := exec.Command("bitrise", "envman", "add", "--key", "JEKYLL_GENERATED_SITE_FOLDER", "--value", siteDir).CombinedOutput()
-	if err != nil {
-		fmt.Printf("Failed to expose output with envman, error: %#v | output: %s", err, cmdLog)
-		os.Exit(1)
-	}
+	exportJekyllSiteFolderPath(config)
 
 	log.Donef("  Done")
 }
