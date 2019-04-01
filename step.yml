@@ -59,6 +59,8 @@ inputs:
       title: Working directory
       summary: "The root directory of your Jekyll project."
       description: "The root directory of your Jekyll project."
+      is_expand: true
+      is_required: true
 
 outputs:
   - JEKYLL_GENERATED_SITE_FOLDER:
